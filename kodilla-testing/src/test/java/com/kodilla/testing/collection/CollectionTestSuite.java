@@ -32,9 +32,8 @@ public class CollectionTestSuite {
         //Given
         OddNumberExterminator exterminatorTest1 = new OddNumberExterminator();
         ArrayList<Integer> numbers = new ArrayList<Integer>();
-        ArrayList<Integer> oddNumberTest1 = exterminatorTest1.exterminate(numbers);
         //When
-
+        ArrayList<Integer> oddNumberTest1 = exterminatorTest1.exterminate(numbers);
         //Then
         for (int a : oddNumberTest1) {
             Assert.assertTrue(a % 2 == 0);
@@ -45,7 +44,6 @@ public class CollectionTestSuite {
         //Given
         OddNumberExterminator exterminatorTest2 = new OddNumberExterminator();
         ArrayList<Integer> numbers = new ArrayList<Integer>();
-        ArrayList<Integer> oddNumberTest2 = exterminatorTest2.exterminate(numbers);
         //When
         for(int a = 0; a < 100; a++) {
             numbers.add(1);
@@ -57,9 +55,8 @@ public class CollectionTestSuite {
             numbers.add(3);
             numbers.add(2);
             numbers.add(10);
-
-
         }
+        ArrayList<Integer> oddNumberTest2 = exterminatorTest2.exterminate(numbers);
         //Then
         for (int a : oddNumberTest2) {
             Assert.assertTrue(a % 2 == 0);
