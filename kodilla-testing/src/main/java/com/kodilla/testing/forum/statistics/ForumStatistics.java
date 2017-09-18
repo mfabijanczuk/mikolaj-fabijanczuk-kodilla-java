@@ -41,22 +41,20 @@ public class ForumStatistics {
     }
 
     public void calculateAdvStatistics(Statistics statistics){
-        HashMap<Integer, Double> resultStatisticsMap = new HashMap<Integer, Double>();
         this.numberOfUsers = statistics.userNames().size();
         this.numberOfPosts = statistics.postsCount();
         this.numberOfComments = statistics.commentsCount();
-        this.averagePostsPerUser = statistics.postsCount()/statistics.userNames().size();
-        this.averageCommentsPerUser = statistics.postsCount()/statistics.userNames().size();
-        if(statistics.postsCount()>0) {
-            this.averageCommentsPerPosts = statistics.commentsCount() / statistics.postsCount();
+        if(statistics.userNames().size() > 0) {
+            this.averagePostsPerUser = statistics.postsCount() / statistics.userNames().size();
+            this.averageCommentsPerUser = statistics.postsCount() / statistics.userNames().size();
+        }else{
+            this.averagePostsPerUser = 0;
+            this.averageCommentsPerUser = 0;
         }
-        resultStatisticsMap.put(0, (double)numberOfUsers);
-        resultStatisticsMap.put(1, (double)numberOfPosts);
-        resultStatisticsMap.put(2, (double)numberOfComments);
-        resultStatisticsMap.put(3, averagePostsPerUser);
-        resultStatisticsMap.put(4, averageCommentsPerUser);
-        resultStatisticsMap.put(5, averageCommentsPerPosts);
-
+        if(statistics.postsCount() > 0) {
+            this.averageCommentsPerPosts = statistics.commentsCount() / statistics.postsCount();
+        }else{
+            this.averageCommentsPerPosts = 0;
+        }
     }
-
 }
