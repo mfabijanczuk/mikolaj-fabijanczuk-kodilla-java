@@ -21,7 +21,7 @@ public class ForumStatisticsTestSuite {
         when(statisticsMock.userNames()).thenReturn(userNames);
         when(statisticsMock.commentsCount()).thenReturn(commentsNumber);
         when(statisticsMock.postsCount()).thenReturn(postsNumber);
-        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        ForumStatistics forumStatistics = new ForumStatistics();
 
         //When
         forumStatistics.calculateAdvStatistics(statisticsMock);
@@ -48,7 +48,7 @@ public class ForumStatisticsTestSuite {
         when(statisticsMock.userNames()).thenReturn(userNames);
         when(statisticsMock.commentsCount()).thenReturn(commentsNumber);
         when(statisticsMock.postsCount()).thenReturn(postsNumber);
-        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        ForumStatistics forumStatistics = new ForumStatistics();
 
         //When
         forumStatistics.calculateAdvStatistics(statisticsMock);
@@ -74,18 +74,71 @@ public class ForumStatisticsTestSuite {
         when(statisticsMock.userNames()).thenReturn(userNames);
         when(statisticsMock.commentsCount()).thenReturn(commentsNumber);
         when(statisticsMock.postsCount()).thenReturn(postsNumber);
-        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        ForumStatistics forumStatistics = new ForumStatistics();
 
         //When
         forumStatistics.calculateAdvStatistics(statisticsMock);
         double getAveragePostsPerUserTest = forumStatistics.getAveragePostsPerUser();
-        double getAverageCommentsPerUserTest = forumStatistics.getAveragePostsPerUser();
-        double getAverageCommentsPerPostsTest = forumStatistics.getAveragePostsPerUser();
+        double getAverageCommentsPerUserTest = forumStatistics.getAverageCommentsPerUser();
+        double getAverageCommentsPerPostsTest = forumStatistics.getAverageCommentsPerPosts();
 
         //Then
         Assert.assertEquals(10/2, getAveragePostsPerUserTest, 0);
         Assert.assertEquals(0/2, getAverageCommentsPerUserTest, 0);
         Assert.assertEquals(0/1000, getAverageCommentsPerPostsTest, 0);
+    }
 
+    @Test
+    public void testIfMoreCommentsThenPosts(){
+        //Given
+        Statistics statisticsMock   =   mock(Statistics.class);
+        List<String> userNames = new ArrayList<String>();
+        userNames.add("user1");
+        userNames.add("user2");
+        int postsNumber = 2;
+        int commentsNumber = 6;
+        when(statisticsMock.userNames()).thenReturn(userNames);
+        when(statisticsMock.commentsCount()).thenReturn(commentsNumber);
+        when(statisticsMock.postsCount()).thenReturn(postsNumber);
+        ForumStatistics forumStatistics = new ForumStatistics();
+
+        //When
+        forumStatistics.calculateAdvStatistics(statisticsMock);
+        double getAveragePostsPerUserTest = forumStatistics.getAveragePostsPerUser();
+        double getAverageCommentsPerUserTest = forumStatistics.getAverageCommentsPerUser();
+        double getAverageCommentsPerPostsTest = forumStatistics.getAverageCommentsPerPosts();
+
+        //Then
+        Assert.assertEquals(2/2, getAveragePostsPerUserTest, 0);
+        Assert.assertEquals(6/2, getAverageCommentsPerUserTest, 0);
+        Assert.assertEquals(6/2, getAverageCommentsPerPostsTest, 0);
+        Assert.assertTrue(forumStatistics.getnumberOfComments() > forumStatistics.getnumberOfPosts());
+    }
+
+    @Test
+    public void testIfMorePostsThenComments(){
+        //Given
+        Statistics statisticsMock   =   mock(Statistics.class);
+        List<String> userNames = new ArrayList<String>();
+        userNames.add("user1");
+        userNames.add("user2");
+        int postsNumber = 6;
+        int commentsNumber = 3;
+        when(statisticsMock.userNames()).thenReturn(userNames);
+        when(statisticsMock.commentsCount()).thenReturn(commentsNumber);
+        when(statisticsMock.postsCount()).thenReturn(postsNumber);
+        ForumStatistics forumStatistics = new ForumStatistics();
+
+        //When
+        forumStatistics.calculateAdvStatistics(statisticsMock);
+        double getAveragePostsPerUserTest = forumStatistics.getAveragePostsPerUser();
+        double getAverageCommentsPerUserTest = forumStatistics.getAverageCommentsPerUser();
+        double getAverageCommentsPerPostsTest = forumStatistics.getAverageCommentsPerPosts();
+
+        //Then
+        Assert.assertEquals(6/2, getAveragePostsPerUserTest, 0);
+        Assert.assertEquals(3/2, getAverageCommentsPerUserTest, 0);
+        Assert.assertEquals(6/3, getAverageCommentsPerPostsTest, 0);
+        Assert.assertTrue(forumStatistics.getnumberOfComments() < forumStatistics.getnumberOfPosts());
     }
 }
