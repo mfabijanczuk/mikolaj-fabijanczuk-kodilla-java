@@ -45,14 +45,14 @@ public class ForumStatistics {
         this.numberOfPosts = statistics.postsCount();
         this.numberOfComments = statistics.commentsCount();
         if(numberOfUsers > 0) {
-            this.averagePostsPerUser = statistics.postsCount() / statistics.userNames().size();
-            this.averageCommentsPerUser = statistics.commentsCount() / statistics.userNames().size();
+            this.averagePostsPerUser = (double)(statistics.postsCount() / statistics.userNames().size());
+            this.averageCommentsPerUser = (double)(statistics.commentsCount() / statistics.userNames().size());
         }else{
             this.averagePostsPerUser = 0;
             this.averageCommentsPerUser = 0;
         }
         if(numberOfPosts > 0) {
-            this.averageCommentsPerPosts = statistics.commentsCount() / statistics.postsCount();
+            this.averageCommentsPerPosts = (double)(statistics.commentsCount() / statistics.postsCount());
         }else{
             this.averageCommentsPerPosts = 0;
         }
