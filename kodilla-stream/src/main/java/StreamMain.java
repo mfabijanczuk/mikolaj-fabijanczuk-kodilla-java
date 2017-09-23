@@ -24,6 +24,8 @@ public class StreamMain {
     public static void main(String[] args) {
         System.out.println("Welcome to module 7 - Stream");
 
+
+
         Forum forum = new Forum();
         Map<Integer, ForumUser> theResultMapOfUsers = forum.getUserList().stream()
                 .filter(forumUser -> forumUser.getSex()=='M')
