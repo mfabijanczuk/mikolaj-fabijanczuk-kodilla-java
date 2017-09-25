@@ -12,7 +12,7 @@ public class SearchFlight {
 
         Boolean availableFlight = mapFlight.get(flight.getArrivalAirport());
 
-        if(flight == null || availableFlight == false) {
+        if(availableFlight == null || !availableFlight) {
             throw new RouteNotFoundException("Nie ma takiego połączenia");
         }
         return availableFlight;
