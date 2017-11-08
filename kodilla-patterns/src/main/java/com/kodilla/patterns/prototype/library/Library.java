@@ -28,9 +28,9 @@ public final class Library extends Prototype{
 
     @Override
     public String toString() {
-        String s = "Library [" + name + "]\n";
+        String s = "Library [" + name + "]";
         for (Book book : books) {
-            s = s + books.toString() + "\n";
+            s = s + "\n" + book.toString();
         }
         return s;
     }
