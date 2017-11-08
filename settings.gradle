@@ -3,6 +3,7 @@ include 'kodilla-stream'
 include 'kodilla-exeption'
 include 'kodilla-good-patterns'
 include 'kodilla-spring-intro'
+include 'kodilla-spring'
 include 'kodilla-spring-web'
 include 'kodilla-patterns'
 
