@@ -63,7 +63,7 @@ public final class Bigmac {
         }
 
         public BigmacBuilder ingredient(String ingredient) {
-            if(ingredients.equals(SALAD) || ingredients.equals(ONION) || ingredients.equals(BACON) || ingredients.equals(CUCUMBER) || ingredients.equals(CHILLI_PEPPER) || ingredients.equals(MUSHROOMS) || ingredients.equals(SHRIMP) || ingredients.equals(CHEESE) ) {
+            if(ingredient.equals(SALAD) || ingredient.equals(ONION) || ingredient.equals(BACON) || ingredient.equals(CUCUMBER) || ingredient.equals(CHILLI_PEPPER) || ingredient.equals(MUSHROOMS) || ingredient.equals(SHRIMP) || ingredient.equals(CHEESE) ) {
                 ingredients.add(ingredient);
                 return this;
             } else {
