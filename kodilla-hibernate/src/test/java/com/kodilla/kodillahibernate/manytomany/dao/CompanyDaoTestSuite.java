@@ -88,26 +88,25 @@ public class CompanyDaoTestSuite {
         lindaKovalsky.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(greyMatter);
 
-        companyDao.save(softwareMachine);
-        int softwareMachineId = softwareMachine.getId();
-        companyDao.save(dataMaesters);
-        int dataMaestersId = dataMaesters.getId();
-        companyDao.save(greyMatter);
-        int greyMatterId = greyMatter.getId();
-
         //When
-        List<Company> threeLetters = companyDao.retrieve3LettersOfCompanyName("Grey Matter");
+        companyDao.save(softwareMachine);
+        companyDao.save(dataMaesters);
+        companyDao.save(greyMatter);
+        employeeDao.save(johnSmith);
+        employeeDao.save(stephanieClarckson);
+        employeeDao.save(lindaKovalsky);
+        List<Company> threeLetters = companyDao.retrieve3LettersOfCompanyName("Gre");
+        int id = threeLetters.get(0).getId();
         List<Employee> lastname = employeeDao.retrieveLastname("Kovalsky");
-
+        int id2 = threeLetters.get(0).getId();
         //Then
         try {
             Assert.assertEquals(1, threeLetters.size());
             Assert.assertEquals(1, lastname.size());
         } finally {
             //CleanUp
-            companyDao.delete(softwareMachineId);
-            companyDao.delete(dataMaestersId);
-            companyDao.delete(greyMatterId);
+            companyDao.delete(id);
+            employeeDao.delete(id2);
         }
     }
 }
