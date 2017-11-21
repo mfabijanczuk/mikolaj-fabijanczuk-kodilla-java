@@ -90,23 +90,32 @@ public class CompanyDaoTestSuite {
 
         //When
         companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
         companyDao.save(dataMaesters);
+        int dataMaestersId = dataMaesters.getId();
         companyDao.save(greyMatter);
+        int greyMatterId = greyMatter.getId();
+
         employeeDao.save(johnSmith);
+        int johnSmithId = johnSmith.getId();
         employeeDao.save(stephanieClarckson);
+        int stephanieClarcksonId = stephanieClarckson.getId();
         employeeDao.save(lindaKovalsky);
+        int lindaKovalskyId = lindaKovalsky.getId();
+
         List<Company> threeLetters = companyDao.retrieve3LettersOfCompanyName("Gre");
-        int id = threeLetters.get(0).getId();
         List<Employee> lastname = employeeDao.retrieveLastname("Kovalsky");
-        int id2 = threeLetters.get(0).getId();
         //Then
+
+        Assert.assertEquals(1, threeLetters.size());
+        Assert.assertEquals(1, lastname.size());
+
+        //CleanUp
         try {
-            Assert.assertEquals(1, threeLetters.size());
-            Assert.assertEquals(1, lastname.size());
-        } finally {
-            //CleanUp
-            companyDao.delete(id);
-            employeeDao.delete(id2);
+            companyDao.delete(greyMatterId);
+            employeeDao.delete(lindaKovalskyId);
+        } catch (Exception e) {
+            //do nothing
         }
     }
 }
