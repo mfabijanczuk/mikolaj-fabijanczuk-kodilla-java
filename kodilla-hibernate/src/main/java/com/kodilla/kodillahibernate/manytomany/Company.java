@@ -11,6 +11,10 @@ import java.util.List;
                 " WHERE SUBSTRING(COMPANY_NAME, 1, 3) = :COMPANY_NAME",
         resultClass = Company.class
 )
+@NamedQuery(
+        name = "Company.retrieveCompany",
+        query = "FROM Company WHERE name LIKE :framentOfName"
+)
 
 @Entity
 @Table(name = "COMPANIES")
