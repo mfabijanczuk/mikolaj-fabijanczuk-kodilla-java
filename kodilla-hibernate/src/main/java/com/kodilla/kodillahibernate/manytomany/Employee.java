@@ -11,8 +11,8 @@ import java.util.List;
                 query = "FROM Employee WHERE lastname = :LASTNAME"
         ),
         @NamedQuery(
-                name = "Employee.retrieveEmployee",
-                query = "FROM Employee WHERE lastname LIKE :framentOfLastname"
+                name = "Employee.retrieveEmployeeByLastname",
+                query = "FROM Employee WHERE lastname LIKE :FragmentOfLastname"
         )
 })
 @Entity

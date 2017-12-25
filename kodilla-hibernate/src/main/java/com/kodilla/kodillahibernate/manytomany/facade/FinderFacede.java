@@ -21,12 +21,12 @@ public class FinderFacede {
     @Autowired
     private CompanyDao companyDao;
 
-    public List<Employee> findEmploeeByLastname(final String framentOfLastname) throws FinderProcessingExeption {
+    public List<Employee> findEmploeeByLastname(final String fragmentOfLastname) throws FinderProcessingExeption {
         boolean wasError = false;
         List<Employee> foundEmployees;
-        String fragmentToFind = "%" + framentOfLastname + "%";
+        String fragmentToFind = "%" + fragmentOfLastname + "%";
         try {
-            LOGGER.info("Finding employee by fragment: " + framentOfLastname);
+            LOGGER.info("Finding employee by fragment: " + fragmentOfLastname);
             foundEmployees = employeeDao.retrieveEmployeeByLastname(fragmentToFind);
             if(foundEmployees.size() == 0) {
                 wasError = true;
@@ -45,7 +45,7 @@ public class FinderFacede {
         }
     }
 
-    public List<Company> findCompanyBaName(final String fragmentOfName) throws FinderProcessingExeption {
+    public List<Company> findCompanyByName(final String fragmentOfName) throws FinderProcessingExeption {
         boolean wasError = false;
         List<Company> foundCompany;
         String fragmentToFind = "%" + fragmentOfName + "%";
@@ -55,7 +55,7 @@ public class FinderFacede {
             if(foundCompany.size() == 0) {
                 wasError = true;
                 LOGGER.error(FinderProcessingExeption.ERR_COMPANY_NOT_FOUND);
-                throw  new FinderProcessingExeption(FinderProcessingExeption.ERR_COMPANY_NOT_FOUND);
+                throw new FinderProcessingExeption(FinderProcessingExeption.ERR_COMPANY_NOT_FOUND);
             }else {
                 foundCompany.forEach(company -> LOGGER.info("Company: " + company));
                 return foundCompany;
@@ -68,5 +68,4 @@ public class FinderFacede {
             }
         }
     }
-
 }

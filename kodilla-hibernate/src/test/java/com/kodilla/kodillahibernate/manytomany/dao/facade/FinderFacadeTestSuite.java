@@ -20,19 +20,20 @@ import java.util.List;
 public class FinderFacadeTestSuite {
 
     @Autowired
-    FinderFacede finderFacede;
+    private FinderFacede finderFacede;
     @Autowired
     CompanyDao companyDao;
     @Autowired
     EmployeeDao employeeDao;
 
         @Test
-        public void testFindEmploeeByLastname() {
+        public void testFindEmploeeByLastname() throws FinderProcessingExeption {
             //Given
             Employee johnSmith = new Employee("John", "Smith");
             Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
             Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
 
+            //When
             employeeDao.save(johnSmith);
             int johnSmithId = johnSmith.getId();
             employeeDao.save(stephanieClarckson);
@@ -40,15 +41,15 @@ public class FinderFacadeTestSuite {
             employeeDao.save(lindaKovalsky);
             int lindaKovalskyId = lindaKovalsky.getId();
 
-            //When
-            try {
-                finderFacede.findEmploeeByLastname("val");
-            } catch (FinderProcessingExeption e) {
-            }
+            String fragmentOfLastname = "valsk";
+            List<Employee> foundEmployees = finderFacede.findEmploeeByLastname(fragmentOfLastname);
+
+            //Then
+            Assert.assertEquals(1, foundEmployees.size());
         }
 
         @Test
-        public void testFindCompanyBaName() {
+        public void testFindCompanyByName() throws FinderProcessingExeption {
             //Given
             Company softwareMachine = new Company("Software Machine");
             Company dataMaesters = new Company("Data Maesters");
@@ -62,14 +63,10 @@ public class FinderFacadeTestSuite {
             int greyMatterId = greyMatter.getId();
 
             //When
-            List<Company> foundCompany = null;
-            try {
-                foundCompany = finderFacede.findCompanyBaName("este");
-            } catch (FinderProcessingExeption finderProcessingExeption) {
-                finderProcessingExeption.printStackTrace();
-            }
+            String fragmentOfName = "at";
+            List<Company> foundCompany = finderFacede.findCompanyByName(fragmentOfName);
             //Then
-            Assert.assertEquals(1, foundCompany.size());
+            Assert.assertEquals(2, foundCompany.size());
 
         }
 }
