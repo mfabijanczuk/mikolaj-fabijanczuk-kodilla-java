@@ -46,6 +46,14 @@ public class FinderFacadeTestSuite {
 
             //Then
             Assert.assertEquals(1, foundEmployees.size());
+
+            try {
+                employeeDao.delete(johnSmithId);
+                employeeDao.delete(stephanieClarcksonId);
+                employeeDao.delete(lindaKovalskyId);
+            } catch (Exception e) {
+                //do nothing
+            }
         }
 
         @Test
@@ -67,6 +75,14 @@ public class FinderFacadeTestSuite {
             List<Company> foundCompany = finderFacede.findCompanyByName(fragmentOfName);
             //Then
             Assert.assertEquals(2, foundCompany.size());
+            try {
+                companyDao.delete(softwareMachineId);
+                companyDao.delete(dataMaestersId);
+                companyDao.delete(greyMatterId);
+            } catch (Exception e) {
+                //do nothing
+            }
+
 
         }
 }
