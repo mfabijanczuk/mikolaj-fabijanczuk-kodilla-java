@@ -14,7 +14,7 @@ import java.util.List;
         )
         @NamedQuery(
                 name = "Company.retrieveCompanyByLastname",
-                query = "FROM Company WHERE name LIKE :FragmentOfName"
+                query = "FROM Company WHERE name LIKE :fragmentOfName"
         )
 
 @Entity
