@@ -56,13 +56,13 @@ public class CompanyDaoTestSuite {
         Assert.assertNotEquals(0, greyMatterId);
 
         //CleanUp
-                //try {
-            //    companyDao.delete(softwareMachineId);
-            //    companyDao.delete(dataMaestersId);
-            //    companyDao.delete(greyMatterId);
-            //} catch (Exception e) {
-            //    //do nothing
-            //}
+        try {
+        companyDao.delete(softwareMachine);
+        companyDao.delete(dataMaesters);
+        companyDao.delete(greyMatter);
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 
     @Test
@@ -112,8 +112,12 @@ public class CompanyDaoTestSuite {
 
         //CleanUp
         try {
-            companyDao.delete(greyMatterId);
-            employeeDao.delete(lindaKovalskyId);
+            companyDao.delete(softwareMachine);
+            companyDao.delete(dataMaesters);
+            companyDao.delete(greyMatter);
+            employeeDao.delete(johnSmith);
+            employeeDao.delete(stephanieClarckson);
+            employeeDao.delete(lindaKovalsky);
         } catch (Exception e) {
             //do nothing
         }
